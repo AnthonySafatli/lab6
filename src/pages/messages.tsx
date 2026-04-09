@@ -22,7 +22,7 @@ export default function Messages() {
     setErrorMsg("");
 
     try {
-      const res = await fetch("/.netlify/functions/get-messages", {
+      const res = await fetch("/api/get-messages", {
         headers: { Authorization: `Bearer ${pw}` },
       });
 

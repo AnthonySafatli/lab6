@@ -136,7 +136,7 @@ export default function ContactForm({ status, setStatus }: ContactFormProps) {
 
     setStatus("sending");
     try {
-      const res = await fetch("/.netlify/functions/submit-message", {
+      const res = await fetch("/api/submit-message", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
