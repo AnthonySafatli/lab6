@@ -136,7 +136,17 @@ export default function ContactForm({ status, setStatus }: ContactFormProps) {
 
     setStatus("sending");
     try {
-      await new Promise((res) => setTimeout(res, 1200));
+      const res = await fetch("/.netlify/functions/submit-message", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: form.name,
+          email: form.email,
+          subject: form.subject,
+          message: form.message,
+        }),
+      });
+      if (!res.ok) throw new Error("Failed");
       setStatus("success");
       setForm(INITIAL);
       setTouched({});
