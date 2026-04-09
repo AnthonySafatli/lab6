@@ -1,7 +1,5 @@
-import type { Handler, HandlerEvent } from "@netlify/functions";
 import { getDeployStore } from "@netlify/blobs";
 
-// Sanitization (server-side, belt-and-suspenders)
 function sanitize(value: unknown): string {
   if (typeof value !== "string") return "";
   return value
@@ -11,13 +9,12 @@ function sanitize(value: unknown): string {
     .replace(/>/g, "&gt;")
     .replace(/"/g, "&quot;")
     .replace(/'/g, "&#x27;")
-    .slice(0, 2000); // hard cap
+    .slice(0, 2000);
 }
 
-// Validators
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
-const ALPHA_RE = /^[a-zA-Z\s\-'&amp;]+$/;
-const LETTERS_RE = /^[a-zA-Z\s&amp;]+$/;
+const ALPHA_RE = /^[a-zA-Z\s\-\'&]+$/;
+const LETTERS_RE = /^[a-zA-Z\s&]+$/;
 
 function validate(body: Record<string, string>): string | null {
   if (!body.name || !ALPHA_RE.test(body.name)) return "Invalid name.";
@@ -28,49 +25,62 @@ function validate(body: Record<string, string>): string | null {
   return null;
 }
 
-// Handler
-export const handler: Handler = async (event: HandlerEvent) => {
+export default async (req: Request) => {
   const cors = {
     "Access-Control-Allow-Origin": process.env.URL ?? "*",
     "Access-Control-Allow-Headers": "Content-Type",
   };
 
-  if (event.httpMethod === "OPTIONS") {
-    return { statusCode: 204, headers: cors, body: "" };
+  if (req.method === "OPTIONS") {
+    return new Response(null, { status: 204, headers: cors });
   }
 
-  if (event.httpMethod !== "POST") {
-    return { statusCode: 405, headers: cors, body: "Method not allowed" };
+  if (req.method !== "POST") {
+    return new Response("Method not allowed", { status: 405, headers: cors });
   }
 
-  let raw: Record<string, unknown>;
+  let raw: any;
   try {
-    raw = JSON.parse(event.body ?? "{}");
+    raw = await req.json();
   } catch {
-    return { statusCode: 400, headers: cors, body: "Invalid JSON" };
+    return new Response("Invalid JSON", { status: 400, headers: cors });
+  }
+
+  const rawTyped = {
+    name: String(raw.name ?? ""),
+    email: String(raw.email ?? ""),
+    subject: String(raw.subject ?? ""),
+    message: String(raw.message ?? ""),
+  };
+
+  const error = validate(rawTyped);
+  if (error) {
+    return new Response(JSON.stringify({ error }), {
+      status: 422,
+      headers: cors,
+    });
   }
 
   const sanitized = {
-    name: sanitize(raw.name),
-    email: sanitize(raw.email),
-    subject: sanitize(raw.subject),
-    message: sanitize(raw.message),
+    name: sanitize(rawTyped.name),
+    email: sanitize(rawTyped.email),
+    subject: sanitize(rawTyped.subject),
+    message: sanitize(rawTyped.message),
     date: new Date().toISOString(),
   };
 
-  const error = validate(sanitized);
-  if (error) {
-    return { statusCode: 422, headers: cors, body: JSON.stringify({ error }) };
+  try {
+    const store = getDeployStore("messages");
+    const id = `${Date.now()}-${Math.random().toString(36).slice(2, 8)}`;
+
+    await store.setJSON(id, sanitized);
+
+    return new Response(JSON.stringify({ ok: true, id }), {
+      status: 201,
+      headers: { ...cors, "Content-Type": "application/json" },
+    });
+  } catch (err) {
+    console.error(err);
+    return new Response("Storage failed", { status: 500 });
   }
-
-  const store = getDeployStore("messages");
-  const id = `${Date.now()}-${Math.random().toString(36).slice(2, 8)}`;
-
-  await store.setJSON(id, sanitized);
-
-  return {
-    statusCode: 201,
-    headers: { ...cors, "Content-Type": "application/json" },
-    body: JSON.stringify({ ok: true, id }),
-  };
 };
