@@ -1,5 +1,5 @@
 import type { Handler, HandlerEvent } from "@netlify/functions";
-import { getStore } from "@netlify/blobs";
+import { getDeployStore } from "@netlify/blobs";
 
 export const handler: Handler = async (event: HandlerEvent) => {
   const cors = {
@@ -15,7 +15,8 @@ export const handler: Handler = async (event: HandlerEvent) => {
     return { statusCode: 405, headers: cors, body: "Method not allowed" };
   }
 
-  // Simple password guard 
+  // ── Simple password guard ─────────────────────────────────────────────────
+  // Set MESSAGES_PASSWORD in your Netlify environment variables.
   const expected = process.env.MESSAGES_PASSWORD;
   if (!expected) {
     return { statusCode: 503, body: "Server not configured." };
@@ -33,8 +34,8 @@ export const handler: Handler = async (event: HandlerEvent) => {
     };
   }
 
-  // Fetch all blobs 
-  const store = getStore("messages");
+  // ── Fetch all blobs ───────────────────────────────────────────────────────
+  const store = getDeployStore("messages");
   const { blobs } = await store.list();
 
   const messages = await Promise.all(

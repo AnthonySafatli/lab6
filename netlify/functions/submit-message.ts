@@ -1,7 +1,7 @@
 import type { Handler, HandlerEvent } from "@netlify/functions";
-import { getStore } from "@netlify/blobs";
+import { getDeployStore } from "@netlify/blobs";
 
-// Sanitization (server-side, belt-and-suspenders)
+// ── Sanitization (server-side, belt-and-suspenders) ───────────────────────────
 function sanitize(value: unknown): string {
   if (typeof value !== "string") return "";
   return value
@@ -14,7 +14,7 @@ function sanitize(value: unknown): string {
     .slice(0, 2000); // hard cap
 }
 
-// Validators
+// ── Validators ────────────────────────────────────────────────────────────────
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
 const ALPHA_RE = /^[a-zA-Z\s\-'&amp;]+$/;
 const LETTERS_RE = /^[a-zA-Z\s&amp;]+$/;
@@ -28,7 +28,7 @@ function validate(body: Record<string, string>): string | null {
   return null;
 }
 
-// Handler
+// ── Handler ───────────────────────────────────────────────────────────────────
 export const handler: Handler = async (event: HandlerEvent) => {
   const cors = {
     "Access-Control-Allow-Origin": process.env.URL ?? "*",
@@ -63,7 +63,7 @@ export const handler: Handler = async (event: HandlerEvent) => {
     return { statusCode: 422, headers: cors, body: JSON.stringify({ error }) };
   }
 
-  const store = getStore("messages");
+  const store = getDeployStore("messages");
   const id = `${Date.now()}-${Math.random().toString(36).slice(2, 8)}`;
 
   await store.setJSON(id, sanitized);
