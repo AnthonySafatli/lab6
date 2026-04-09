@@ -1,7 +1,17 @@
-.project-card-img {
-  object-fit: cover;
+.project-card-img-container {
+  height: 220px; /* max height */
+  display: flex;
+  align-items: center; /* vertical center */
+  justify-content: center; /* horizontal center */
+  background: rgba(0, 0, 0, 0.2); /* optional "dead space" look */
   border-radius: 14px 0 0 14px;
-  min-height: 220px;
+  overflow: hidden;
+}
+
+.project-card-img {
+  max-height: 100%;
+  max-width: 100%;
+  object-fit: contain; /* 👈 key change */
 }
 
 .project-tag {

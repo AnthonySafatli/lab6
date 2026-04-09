@@ -1,32 +1,42 @@
 [
   {
     "id": 1,
-    "title": "Project Alpha",
+    "title": "YourAcademicChoice",
     "author": "Anthony",
-    "description": "A full-stack web application for managing tasks and collaborating with your team in real time.",
-    "image": "https://placehold.co/600x400/0c0e16/00eaff?text=Project+Alpha",
-    "tags": ["React", "Node.js", "PostgreSQL", "WebSockets"],
-    "liveUrl": "https://example.com",
-    "repoUrl": "https://github.com"
+    "description": "A startup project built using React and ASP.NET. It is a mentorship platform that connects early university students with experienced peers for academic guidance and advice.",
+    "image": "https://youracademicchoice.com/yac-logo.jpg",
+    "tags": ["React", "ASP.NET API", "SignalR", "PostgreSQL", "Tailwind CSS"],
+    "liveUrl": "https://www.youracademicchoice.com",
+    "repoUrl": null
   },
   {
     "id": 2,
-    "title": "Project Beta",
+    "title": "Portfolio Website",
     "author": "Anthony",
-    "description": "A machine learning pipeline that classifies satellite imagery to detect environmental changes over time.",
-    "image": "https://placehold.co/600x400/0c0e16/00eaff?text=Project+Beta",
-    "tags": ["Python", "TensorFlow", "FastAPI", "Docker"],
-    "liveUrl": null,
-    "repoUrl": "https://github.com"
+    "description": "Personal portfolio showcasing projects, skills, and experience.",
+    "image": "https://anthonysafatli.ca/projects/images/globe.png",
+    "tags": ["Portfolio", "Web", "ASP.NET", "Razor Pages", "SQLite"],
+    "liveUrl": "https://anthonysafatli.ca",
+    "repoUrl": "https://github.com/AnthonySafatli/Portfolio"
   },
   {
     "id": 3,
-    "title": "Project Gamma",
+    "title": "Null Text Editor",
     "author": "Anthony",
-    "description": "A cross-platform mobile app that helps users track personal finances with smart categorisation and insights.",
-    "image": "https://placehold.co/600x400/0c0e16/00eaff?text=Project+Gamma",
-    "tags": ["React Native", "Expo", "Firebase"],
-    "liveUrl": "https://example.com",
-    "repoUrl": "https://github.com"
+    "description": "A custom-built text editor written in C++ using OpenGL that recreates a console-style interface from scratch, featuring its own file system, keyboard controls, and customizable UI.",
+    "image": "https://anthonysafatli.ca/projects/images/null%20icon.png",
+    "tags": ["C++", "OpenGL", "Graphics Programming", "Desktop App"],
+    "liveUrl": null,
+    "repoUrl": "https://github.com/AnthonySafatli/Null"
+  },
+  {
+    "id": 4,
+    "title": "Archive of Continuity",
+    "author": "Anthony",
+    "description": "An experimental infinite library application inspired by the Library of Babel, generating all possible text across infinite pages and character sets using a custom algorithm.",
+    "image": "https://anthonysafatli.ca/projects/images/icon%20of%20continuity.ico",
+    "tags": ["C#", "WinForms", "Algorithms", "Experimental"],
+    "liveUrl": null,
+    "repoUrl": null
   }
 ]

@@ -10,11 +10,13 @@ export default function ProjectCard({ project }: ProjectCardProps) {
     <div className="card mb-4">
       <div className="row g-0">
         <div className="col-md-5">
-          <img
-            className="project-card-img img-fluid h-100 w-100"
-            src={project.image}
-            alt={project.title}
-          />
+          <div className="project-card-img-container">
+            <img
+              className="project-card-img"
+              src={project.image}
+              alt={"Image for " + project.title}
+            />
+          </div>
         </div>
 
         <div className="col-md-7 d-flex flex-column">

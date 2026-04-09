@@ -94,44 +94,7 @@ export default function About() {
             </div>
           </div>
 
-          <div className="card mb-4">
-            <div className="card-body">
-              <h3 className="card-title mb-3">Projects</h3>
-              <div className="mb-3">
-                <h5>YourAcademicChoice</h5>
-                <strong>
-                  <a
-                    href="https://www.youracademicchoice.com"
-                    target="_blank"
-                    rel="noreferrer"
-                  >
-                    www.youracademicchoice.com
-                  </a>
-                </strong>
-                <p className="mt-1">
-                  A startup project built using React and ASP.NET. It is a
-                  mentorship platform that connects early university students
-                  with experienced peers for academic guidance and advice.
-                </p>
-              </div>
-              <div>
-                <h5>Portfolio Website</h5>
-                <strong>
-                  <a
-                    href="https://anthonysafatli.ca"
-                    target="_blank"
-                    rel="noreferrer"
-                  >
-                    anthonysafatli.ca
-                  </a>
-                </strong>
-                <p className="mt-1">
-                  Personal portfolio showcasing projects, skills, and
-                  experience.
-                </p>
-              </div>
-            </div>
-          </div>
+          
         </>
       )}
     </section>
