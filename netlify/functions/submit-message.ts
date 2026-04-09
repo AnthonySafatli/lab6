@@ -1,7 +1,7 @@
 import { getStore } from "@netlify/blobs";
 import type { Context } from "@netlify/functions";
 
-// ── Sanitization ──────────────────────────────────────────────────────────────
+// Sanitization
 function sanitize(value: unknown): string {
   if (typeof value !== "string") return "";
   return value
@@ -14,7 +14,7 @@ function sanitize(value: unknown): string {
     .slice(0, 2000);
 }
 
-// ── Validators ────────────────────────────────────────────────────────────────
+// Validators
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
 const ALPHA_RE = /^[a-zA-Z\s\-']+$/;
 const LETTERS_RE = /^[a-zA-Z\s]+$/;
@@ -28,7 +28,7 @@ function validate(body: Record<string, string>): string | null {
   return null;
 }
 
-// ── Handler (v2) ──────────────────────────────────────────────────────────────
+// Handler
 export default async (req: Request, context: Context) => {
   const cors = {
     "Access-Control-Allow-Origin": Netlify.env.get("URL") ?? "*",

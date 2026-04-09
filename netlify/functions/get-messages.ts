@@ -1,7 +1,7 @@
 import { getStore } from "@netlify/blobs";
 import type { Context } from "@netlify/functions";
 
-// ── Handler (v2) ──────────────────────────────────────────────────────────────
+// Handler
 export default async (req: Request, context: Context) => {
   const cors = {
     "Access-Control-Allow-Origin": Netlify.env.get("URL") ?? "*",
@@ -16,7 +16,7 @@ export default async (req: Request, context: Context) => {
     return new Response("Method not allowed", { status: 405, headers: cors });
   }
 
-  // ── Password guard ────────────────────────────────────────────────────────
+  // Password guard
   const expected = Netlify.env.get("MESSAGES_PASSWORD");
   if (!expected) {
     return new Response("Server not configured.", { status: 503 });
@@ -32,8 +32,7 @@ export default async (req: Request, context: Context) => {
     });
   }
 
-  // ── Fetch all blobs ───────────────────────────────────────────────────────
-  // getStore() called inside handler — environment is ready here
+  // Fetch all blobs
   const store = getStore("messages");
   const { blobs } = await store.list();
 
