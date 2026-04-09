@@ -1,19 +1,17 @@
 import { getDeployStore } from "@netlify/blobs";
 
-export const handler = async () => {
+export default async (req: Request, context: any) => {
   try {
     const store = getDeployStore("test");
-    await store.set("hello", "world");
 
-    return {
-      statusCode: 200,
-      body: "ok",
-    };
+    await store.setJSON("hello", { msg: "world" });
+
+    return new Response(JSON.stringify({ ok: true }), {
+      status: 200,
+      headers: { "Content-Type": "application/json" },
+    });
   } catch (err) {
     console.error(err);
-    return {
-      statusCode: 500,
-      body: "error",
-    };
+    return new Response("error", { status: 500 });
   }
 };
