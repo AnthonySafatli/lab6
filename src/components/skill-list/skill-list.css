@@ -1,0 +1,54 @@
+.controls {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 1.25rem;
+}
+
+.controls input {
+  flex: 1;
+  min-width: 180px;
+  font-family: "Space Mono", monospace;
+}
+
+.category-btn {
+  font-family: "Space Mono", monospace;
+  font-size: 11px;
+  letter-spacing: 0.5px;
+  border-radius: 99px;
+  padding: 4px 14px;
+}
+
+.filtered-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 12px;
+}
+
+.skill-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 6px;
+}
+
+.skill-title {
+  font-family: "Noto Serif", serif;
+  font-size: 15px;
+}
+
+.skill-category {
+  font-size: 11px;
+  padding: 2px 9px;
+  border-radius: 99px;
+  white-space: nowrap;
+  flex-shrink: 0;
+  font-family: "Space Mono", monospace;
+}
+
+.skill-text {
+  font-size: 13px;
+  line-height: 1.55;
+  margin: 0;
+}

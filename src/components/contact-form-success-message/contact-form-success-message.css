@@ -1,0 +1,11 @@
+.checkmark {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  border: 2px solid var(--accent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 1.25rem;
+  box-shadow: 0 0 18px var(--accent-glow);
+}

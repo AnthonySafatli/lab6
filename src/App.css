@@ -1,0 +1,244 @@
+@import url("https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,100..900;1,100..900&family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap");
+
+body {
+  margin: 0;
+  background: var(--bg-gradient);
+  color: var(--text-primary) !important;
+  overflow-x: hidden;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: var(--text-primary) !important;
+  font-family: "Noto Serif", serif;
+}
+
+.hero-section {
+  padding-top: 140px;
+  padding-bottom: 140px;
+  position: relative;
+}
+
+.brand-text {
+  font-family: "Space Mono", serif;
+  letter-spacing: 3px;
+  text-shadow: 0 0 8px var(--accent-glow);
+  color: var(--text-primary) !important;
+}
+
+.navbar-toggler-icon {
+  color: var(--text-primary) !important;
+}
+
+.nav-tech {
+  font-family: "Space Mono", serif;
+  color: var(--text-primary) !important;
+  position: relative;
+}
+
+.nav-tech::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0%;
+  height: 2px;
+  background: var(--accent);
+  transition: width 0.3s ease;
+}
+
+.nav-tech:hover::after {
+  width: 100%;
+}
+
+.active-link {
+  color: var(--accent) !important;
+}
+
+.neon-btn {
+  border-color: var(--accent);
+  color: var(--accent);
+  box-shadow:
+    0 0 10px var(--accent),
+    inset 0 0 10px var(--accent);
+  transition: 0.3s;
+}
+
+.neon-btn:hover {
+  background: var(--accent);
+  color: black;
+  box-shadow: 0 0 20px var(--accent);
+}
+
+.glow-orb {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  width: 300px;
+  height: 300px;
+  background: radial-gradient(circle, var(--accent-glow), transparent 70%);
+  transform: translate(-50%, -50%);
+  filter: blur(100px);
+  z-index: -1;
+  animation: pulse 6s infinite alternate;
+}
+
+@keyframes pulse {
+  from {
+    transform: translate(-50%, -50%) scale(1);
+  }
+  to {
+    transform: translate(-50%, -50%) scale(1.3);
+  }
+}
+
+p {
+  color: var(--text-secondary);
+}
+
+.footer-tech {
+  background: var(--footer-bg);
+  backdrop-filter: blur(8px);
+}
+
+.page-fade {
+  animation: fadeIn 0.8s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.app-container::before {
+  content: "";
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background: url("/stardust.png");
+  opacity: 0.15;
+  z-index: -2;
+}
+
+.card {
+  background: var(--card-bg) !important;
+  border: 1px solid var(--card-border);
+  border-radius: 14px;
+  backdrop-filter: blur(10px);
+  color: var(--text-primary) !important;
+  transition:
+    transform 0.2s ease,
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  border-color: var(--accent-glow);
+}
+
+.card-body {
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+.card-title {
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.card-text {
+  color: var(--text-secondary);
+}
+
+.btn-ghost {
+  border: 1px solid var(--btn-ghost-border) !important;
+  color: var(--text-secondary) !important;
+  transition: 0.3s;
+}
+
+.btn-ghost:hover {
+  border-color: var(--btn-ghost-border-hover) !important;
+  color: var(--text-primary) !important;
+}
+
+.contact-label {
+  font-family: "Space Mono", monospace;
+  font-size: 0.72rem;
+  letter-spacing: 1px;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  display: block;
+  margin-bottom: 6px;
+}
+
+.contact-input {
+  width: 100%;
+  background: var(--input-bg);
+  border: 1px solid var(--input-border);
+  border-radius: 8px;
+  color: var(--text-primary);
+  padding: 10px 14px;
+  font-size: 0.95rem;
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+  outline: none;
+}
+
+.contact-input:focus {
+  border-color: var(--accent-glow);
+  box-shadow: 0 0 0 3px rgba(0, 234, 255, 0.08);
+}
+
+.contact-input::placeholder {
+  color: var(--text-muted);
+}
+
+.message-empty {
+  font-family: "Space Mono", monospace;
+  font-size: 0.85rem;
+}
+
+.theme-switcher {
+  min-width: 50px;
+}
+
+.tab {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  gap: 4px;
+}
+
+.tab .tab-button {
+  font-family: "Space Mono", monospace;
+  font-size: 12px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  padding: 8px 20px;
+  background: transparent;
+  border: none;
+  border-bottom: 2px solid transparent;
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: color 0.2s;
+  margin-bottom: -1px;
+}
+
+.tab .tab-button.active {
+  border-bottom: 2px solid var(--accent);
+  color: var(--accent);
+}
+
+.text-foreground {
+  color: var(--text-primary);
+}

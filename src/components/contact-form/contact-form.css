@@ -1,0 +1,14 @@
+form textarea {
+  resize: vertical;
+}
+
+form .checkbox {
+  margin-top: 3px;
+  accent-color: var(--bs-info, --accent);
+  flex-shrink: 0;
+}
+
+form .checkbox-label {
+  font-size: 0.85rem;
+  cursor: pointer;
+}

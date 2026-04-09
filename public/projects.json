@@ -1,0 +1,32 @@
+[
+  {
+    "id": 1,
+    "title": "Project Alpha",
+    "author": "Anthony",
+    "description": "A full-stack web application for managing tasks and collaborating with your team in real time.",
+    "image": "https://placehold.co/600x400/0c0e16/00eaff?text=Project+Alpha",
+    "tags": ["React", "Node.js", "PostgreSQL", "WebSockets"],
+    "liveUrl": "https://example.com",
+    "repoUrl": "https://github.com"
+  },
+  {
+    "id": 2,
+    "title": "Project Beta",
+    "author": "Anthony",
+    "description": "A machine learning pipeline that classifies satellite imagery to detect environmental changes over time.",
+    "image": "https://placehold.co/600x400/0c0e16/00eaff?text=Project+Beta",
+    "tags": ["Python", "TensorFlow", "FastAPI", "Docker"],
+    "liveUrl": null,
+    "repoUrl": "https://github.com"
+  },
+  {
+    "id": 3,
+    "title": "Project Gamma",
+    "author": "Anthony",
+    "description": "A cross-platform mobile app that helps users track personal finances with smart categorisation and insights.",
+    "image": "https://placehold.co/600x400/0c0e16/00eaff?text=Project+Gamma",
+    "tags": ["React Native", "Expo", "Firebase"],
+    "liveUrl": "https://example.com",
+    "repoUrl": "https://github.com"
+  }
+]

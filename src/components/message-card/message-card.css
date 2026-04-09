@@ -1,0 +1,26 @@
+.message-date {
+  font-family: "Space Mono", monospace;
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  white-space: nowrap;
+  padding-top: 2px;
+}
+
+hr.message-card-hr {
+  border-color: var(--card-border);
+  margin: 12px 0;
+}
+
+.message {
+  line-height: 1.7;
+}
+
+p.mail-link {
+  font-size: 0.85rem;
+  color: #aaa;
+}
+
+a.mail-link {
+  color: #00eaff;
+  text-decoration: none;
+}
